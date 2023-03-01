@@ -1,0 +1,305 @@
+{% extends 'base.html' %}
+{% comment %} <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Know Your Comments</title> {% endcomment %}
+    {% block title %}User Profile{% endblock title %}
+    {% block style %}
+    <style>
+      nav{
+        width: 96vw;
+    }
+      .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+          }
+          
+          /* Modal Content/Box */
+          .modal-content {
+            background-color: #fefefe;
+            margin: 8% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 21vw;
+            height : 55vh; 
+          }
+          
+          /* The Close Button */
+          .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+          }
+          
+          .close:hover,
+          .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+          }
+          form .form{
+            display : grid;
+            grid-gap: 21px;
+            margin-top: 50px;
+            font-size: 1.2em;
+          }
+          form .form-items{
+            display: flex;
+            justify-content: space-between;
+          }
+        
+        form .bt{
+            display : flex;
+            justify-content: center;
+            margin-top : 30px;
+            
+          }
+          
+          form .bt button{
+            font-size: large;
+          }
+          
+          .container{
+            display: grid;
+            grid-template-columns: 30vw 65vw;
+            {% comment %} grid-gap: 5vw; {% endcomment %}
+            height: 93vh;
+            width: 100vw;
+          }
+          
+          .container .info{
+            display: grid;
+            grid-template-rows: 20vh 50vh;
+            height: 80vh;
+            width: 25vw;
+            background-color: white;
+            align-self: center;
+            margin-left: 2vw;
+            align-items: center;
+            justify-items: center;
+            border-radius: 12px;
+        }
+
+        .container .info .pic{
+          background-color: lightgray;
+          width: 140px;
+          height: 140px;
+          border-radius: 50%;
+        }
+
+        .container .info .pic img{
+          width: 140px;
+          height: 140px;
+          border-radius: 50%;
+        }
+
+        .container .info .box{
+          height: 45vh;
+          display: grid;
+          width: 20vw;
+        }
+
+        .container .info .info-box{
+          height: fit-content;
+          background-color: #F8F8F8;
+          padding: 5px;
+          border-radius: 7px;
+          margin: 6px;
+        }
+
+        .container .info #myBtn{
+          margin-top: 10px;
+          height: 40px;
+          background-color: #927AF5;
+          border-radius: 35px;
+          color: white;
+          border: 0px;
+        }
+
+        .container .table{
+            display: grid;
+            height: 80vh;
+            width: 65;
+            background-color: white;
+            align-self: center;
+            border-radius: 12px;
+        }
+
+        .container .table thead{
+          background-color: #927AF5;
+          height: 50px;
+          border-radius: 12px 12px 0 0;
+          color: white;
+        }
+
+        .container table th{
+          border: 1px solid white;
+          border-collapse: collapse;
+        }
+
+        .container table, th, td{
+          border: 1px solid black;
+          border-collapse: collapse;
+          height: fit-content;
+          padding: 5px;
+          text-align: center;
+        }
+
+        .container label{
+          display: block;
+        }
+          
+        </style>
+        {% endblock style %}
+      {% comment %} </head>
+      <body> {% endcomment %}
+{% block body %}
+<div class='container'>
+  <div class = 'info'>
+        <div class = 'pic'>
+          <img src = {{image}}> 
+          <figcaption>{{request.user}}.</figcaption>
+        </div>
+        <div class = 'box'>
+          <div class='info-box'>
+            <label>First Name: </label>
+            <label>{{fname}} </label>
+          </div>
+          
+          <div class='info-box'>
+            <label>Last Name: </label>
+            <label>{{lname}} </label>
+          </div>
+          
+          <div class='info-box'>
+            <label>Email: </label>
+            <label>{{email}} </label>
+          </div>
+          
+          <div class='info-box'>
+            <label>Twitter User Name: </label>
+            <label>{{tid}} </label>
+          </div>
+
+          <div class='info-box'>
+            <label>YouTube User Name: </label>
+            <label>{{yid}} </label>
+          </div>
+          
+          {% comment %} <div class='info-box'>
+            <label>LinkedIn User Name: </label>
+            <label>LinkedIn User Name </label>
+          </div> {% endcomment %}
+          
+          {% comment %} <div class='info-box'> {% endcomment %}
+            <button id="myBtn">Edit Profile</button>
+          {% comment %} </div> {% endcomment %}
+        </div>
+      </div>
+      
+      <div class='table'>
+        <table>
+          <thead>
+            <tr id='table-head'>
+              <th>Post Link</th>
+              <th>Number of Positive Comments</th>
+              <th>Number of Negative Comments</th>
+              <th>Number of Neutral Comments</th>
+              <th>Time of upload</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% comment %} ye chng krna h {% endcomment %}
+            {% for p in post %}
+            <tr>
+              <td><a a href={{p.link}} target="_blank">{{p.link}}</a></td>
+              <td>{{p.pos}}</td>
+              <td>{{p.neg}}</td>
+              <td>{{p.neu}}</td>
+              <td>{{p.time}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          </table>
+      </div>
+    </div>
+    
+    
+    <div id="myModal" class="modal">
+      
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <form method="POST" action="/userProfile" enctype="multipart/form-data">
+            {% csrf_token %}  
+            <div class="form" >
+              <div class='form-items'>   
+                <label>User Name: </label>   
+                <input type="username" placeholder={{request.user}} name="username" required disabled>     
+              </div>
+              <div class='form-items'>   
+                <label>Email: </label>   
+                <input type="email" placeholder={{email}} name="email" required disabled>     
+              </div>
+              <div class='form-items'>   
+                <label>First Name : </label>   
+                <input type="text" placeholder="Enter First Name" name="fname" required>     
+              </div>  
+              <div class='form-items'>   
+                <label>Last Name : </label>   
+                <input type="text" placeholder="Enter Last Name" name="lname" >     
+              </div>  
+              <div class='form-items'>   
+                <label>Twitter User Name: </label>   
+                <input type="text" placeholder="Enter Your Twitter User Name" name="tid" >     
+                </div>  
+                <div class='form-items'>   
+                  <label>Youtube User Name : </label>   
+                  <input type="text" placeholder="Enter Your Twitter User Name" name="yid" required>     
+                </div>  
+                
+                <div class='form-items'>   
+                  <input type="file" name="image" id="fileToUpload">
+                </div>
+                
+                <div class= 'bt'>   
+                  <button type="submit">Save Changes</button>   
+                </div>    
+              </div>   
+        </form>
+      </div>
+      
+    </div>
+    <script>
+      var modal = document.getElementById("myModal");
+
+        var btn = document.getElementById("myBtn");
+        
+        var span = document.getElementsByClassName("close")[0];
+        
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+        
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+      </script>
+      {% endblock body %}
+    {% comment %} </body> {% endcomment %}

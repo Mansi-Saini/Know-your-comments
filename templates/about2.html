@@ -1,0 +1,63 @@
+{% extends 'base2.html' %}
+
+{% block title %}About{% endblock title %}
+
+{% block style %}
+<style>
+    .container{
+        display: grid;
+        grid-template-columns: 50vw 50vw;
+        grid-template-rows: 10vh 83vh;
+        align-items: center;
+        justify-items: center;
+    }
+    
+    .container .heading{
+        grid-column-start: 1;
+        grid-column-end: 3;
+        font-family: 'DM Serif Text', serif;
+        color: #927AF5;
+        font-size: 48px;
+    }
+    
+    .container .photo{
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+    
+    .container .photo img{
+        width: 643.02px;
+        height: 474.47px;
+    }
+    
+    .container .text{
+        width: 30vw;
+        height: 70vh;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        text-align: justify;
+        font-size: 20px;
+        font-family: 'DM Sans';
+    }
+    </style>
+{% endblock style %}
+
+{% block body %}
+<div class = 'container'>
+    <div class = 'heading'>
+        ABOUT US
+    </div>
+        
+    <div class = 'photo'>
+        <img src = 'static/Frame.png'>
+    </div>
+
+    <div class = 'text'>
+        <p>In today's world, social media is one of the most important part of everybody's life. Youtube and Twitter are two big social media platforms with billions of users. A lot of people are producing content on these social media platforms and want to create a career out of it. People producing content online always want to know what kind of content their audiences want to watch. The best way for audiences to tell creators about their choice is through comments. There are a lot of comments on every post and analysing them manually is a difficult task.</p>
+        <p>
+        ‘Know your comments’ is specially created for content creators who wants to know their audiences. We will analyse comments on your post and will give you an insight into it. We will provide you number of positive, negative and neutral comments on your post on youtube and Twitter.
+        </p>
+    </div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,158 @@
+{% extends 'base2.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block style %}
+<style>
+    .container{
+        display: grid;
+        align-content: center;
+        height: 93vh;
+        justify-items: center;
+    }
+.result-box{
+    display: grid;
+    grid-template-rows: 15vh 60vh 5vh;
+    height: 80vh;
+    width: 65vw;
+    background-color: white;
+    align-self: center;
+    border-radius: 12px;
+  }
+
+  .result-box .link{
+    display: grid;
+    grid-template-rows: 6vh 9vh;
+    padding: 15px;
+    height: 11vh;
+    border-bottom: solid 1px;
+  }
+
+  .result-box .link label{
+    font-size: 20px;
+  }
+
+  .result-box .link .input-box form{
+    display: grid;
+    grid-template-columns: 700px 160px;
+
+  }
+
+  .result-box .link .input-box input{
+    width: 660px;
+    height: 40px;
+    border-radius: 10px;
+    border-right: 42px;
+    background-color: #E2E2E2;
+    padding-left: 12px;
+
+  }
+
+  .result-box .link .input-box button{
+    width: 134px;
+    height: 40px;
+    background-color: #927AF5;
+    border-radius: 35px;
+    color: white;
+    border: 0px;
+  }
+
+   .result{
+    display: grid;
+    grid-template-rows: 6vh 54vh;
+  }
+  
+   .result .text{
+    padding: 12px;
+    font-size: 20px;
+  }
+
+   .result .comnt{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    justify-items: center;
+  }
+  
+   .result .comnt table{
+    background-color : #F2F2F2;
+    border-radius: 12px;
+    width: 20vw;
+    height : 20vh;
+  }
+
+   .result .comnt table td{
+    text-align: center;
+  }
+   .result .comnt .graph img{
+    width: 30vw;
+  }
+  
+   .result-box .save-btn{
+    display: flex;
+    align-items : center;
+    justify-content: flex-end;
+  }
+  
+   .result-box .save-btn button{
+    width: 134px;
+    height: 40px;
+    margin-right: 30px;
+    margin-bottom: 15px;
+    background-color: #927AF5;
+    border-radius: 35px;
+    color: white;
+    border: 0px;
+  }
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class = 'container'>
+<div class='result-box'>
+    <div class='link'>
+      <label>Enter Link</label>
+      <div class='input-box'>
+        <form method='POST' action="/">
+          {% csrf_token %}
+          <input type="text" placeholder='link' name="link"  required value={{link}}>
+          <button type="submit">Show Results</button>
+        </form>
+      </div>
+    </div>
+
+
+    <div class='result'>
+      <div class='text'>
+        Result
+      </div>
+        
+      <div class='comnt'>
+        <table>
+          <thead>
+            <th></th>
+            <th> No. of comments</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Positive Comments</td>
+              <td>{{pos}}</td>
+            </tr>
+            <tr>
+              <td>Negative Comments</td>
+              <td>{{neg}}</td>
+            </tr>
+            <tr>
+              <td>Neutral Comments</td>
+              <td>{{neu}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class='graph'>
+          <img src={{chart}}>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}

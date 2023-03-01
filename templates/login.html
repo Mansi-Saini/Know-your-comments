@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Know Your Comments</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            padding : 0;
+            margin : 0;
+        }
+        
+        body{
+            background-color: #927AF5;
+        }
+
+        .container{
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: 30vh 40vh auto;
+            align-items: center;
+            justify-items: center;
+            grid-gap: 10px;
+        }
+
+        .container h1{
+            font-family: 'Lobster Two';
+            align-self:end;
+            font-size: 3em;
+            grid-row-start: 1;
+            margin-bottom: 20px;
+            color : white;
+        }
+
+        .container .forms{
+            align-self:center;
+            background-color: rgba(0,0,0, 0.5);
+            color : white;
+            height : 35vh;
+            width: 20vw;
+            border-radius: 10px;
+            grid-row-start: 2;
+            padding: 25px;
+            display: grid;
+            align-items: center;
+            z-index: 1;
+        }
+
+        form div{
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.4em;
+            z-index: 5;
+            padding: 9px;
+            align-items: center;
+        }
+
+        form button{
+            font-size: 1em;
+            padding: 2px;
+            border-radius: 5px;
+        }
+
+    
+        form .form-items{
+        display: flex;
+        justify-content: space-between;
+        }
+
+        form .input-box{
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        form .bt-box{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        form .bt {
+            font-size: large;
+            width: 230px;
+            height: 40px;
+        }
+
+        .register-box{
+            font-size: 1em;
+            display: flex;
+            justify-content: center;
+        }
+
+        form .remember-me{
+            font-size: 1em;
+        }
+
+        .register-box button{
+            width: 95px;
+            margin-left: 10px;
+            height: 30px;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class='container'>
+        <h1>Know Your Comments...</h1>
+
+        <div class="forms">
+        <form method="POST" action="/login">
+            {% csrf_token %}  
+                <div class = 'form-items'>   
+                    <label>User Name : </label>   
+                    <input class='input-box' type="text" placeholder="Enter User Name" name="username" required>     
+                </div>   
+                <div class = 'form-items'>   
+                    <label>Password : </label>   
+                    <input class='input-box' type="password" placeholder="Enter Password" name="password" required>  
+                </div >   
+                <div class='remember-me'>   
+                    <input type="checkbox" checked="checked" > Remember me     
+                </div>   
+                <div class='bt-box'>   
+                    <button type="submit" class='bt'>Login</button>   
+                </div>   
+            </form>   
+            <form action="/register">
+                <div class='register-box'> 
+                <label>New User? </label>
+                <button type="submit">Register</button>   
+            </div>
+            </form>
+        </div>   
+    </div>
+
+  </body>
+</html>

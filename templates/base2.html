@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>know your comments | {% block title %}{% endblock title %}</title>
+      <link rel="stylesheet" href="static/style.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Roboto&display=swap" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      {% block style %}{% endblock style %}
+   </head>
+   <body>
+      <nav>
+         <div>
+         <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="about">About</a></li>
+            
+         </ul>
+        </div>
+
+         <div class="logo">
+            KNOW YOUR COMMENTS
+         </div>
+
+         <div>
+            <a href="login">Login</a>
+            <a href="register">Register</a>
+         </div>
+      </nav>
+      {% block body %}{% endblock body %}
+      <!-- <div class="content">
+         <div>
+            Responsive Navigation Menu Bar Design
+         </div>
+         <div>
+            using only HTML & CSS
+         </div>
+      </div> -->
+   </body>
+</html>

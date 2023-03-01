@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block title %}Analysis{% endblock title %}
+
+{% block style %}
+<style>
+    nav{
+        position: fixed;
+        width: 96vw;
+    }
+
+    .container{
+        display: grid;
+        height: 193vh;
+        width: 100vw;
+    }
+
+    .container .box{
+        height: 80vh;
+        width: 80vw;
+        display: grid;
+        /* grid-template-columns: 40vw 40vw; */
+        grid-template-rows: 10vh 70vh;
+        align-items: center;
+        justify-items: center;
+        align-self: center;
+        justify-self: center;
+        background-color: white;
+        border-radius: 10px;
+    }
+
+    .container .box .heading{
+        font-size: 20px;
+    }
+
+    .container .box .text{
+        font-size: 40px;
+    }
+
+    .graph{
+            height: 70vh;
+            width: 80vw;
+            display: grid;
+            grid-template-columns: 40vw 40vw;
+            grid-template-rows: 35vh 35vh;
+            align-items: center;
+            justify-items: center;
+            align-self: center;
+            justify-self: center;
+            background-color: white;
+            border-radius: 10px;
+    }
+
+    .container img{
+        width : 26vw;
+        border: 2px solid black;
+        border-radius: 9px;
+        transition: transform .2s;
+    }
+    
+    .container img:hover{
+        transform: scale(1.5);
+    }
+
+    .container .graph .neutral{
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+</style>
+{% endblock style %}
+
+{% block fun %}
+onload="fun()"
+{% endblock fun %}
+
+{% block body %}
+<div class = 'container'>
+    <div id = 'Twitter' class = 'box'>
+        <div class = 'heading'>
+            Twitter
+        </div>
+        <div id = 'textT' class = 'text'>
+            No entries for Twitter
+        </div>
+        <div class = 'graph' id = 'twitterg'>
+            <div class = 'positive'>
+                <img src={{tpositive}}>
+            </div>
+            
+            <div class = 'negative'>
+                <img src={{tnegative}}>
+            </div>
+            
+            <div class = 'neutral'>
+                <img src={{tneutral}}>
+            </div>
+        </div>
+    </div>
+    
+    <div class = 'box'>
+        <div class = 'heading'>
+            YouTube
+        </div>
+        <div id = 'textY' class = 'text'>
+            No entries for YouTube
+        </div>
+        <div class = 'graph' id = 'youtubeg'>
+            <div class = 'positive'>
+                <img src={{ypositive}}>
+            </div>
+
+            <div class = 'negative'>
+                <img src={{ynegative}}>
+            </div>
+
+            <div class = 'neutral'>
+                <img src={{yneutral}}>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"> 
+    function fun(){
+        var a = {{flag}};
+        var t = document.getElementById("textT");
+        var y = document.getElementById("textY");
+        var yg = document.getElementById("youtubeg");
+        var tg = document.getElementById("twitterg");
+        {% comment %} var g = document.getElementsByClassName("graph"); {% endcomment %}
+        
+        if (!a){
+            yg.style.display = "none";
+            tg.style.display = "none";
+        }
+        else{
+            if ({{t}}){
+                t.style.display = "none";
+                yg.style.display = "none"
+            }
+            if ({{y}}){
+                y.style.display = "none";
+                tg.style.display = "none"
+            }          
+        }
+    }
+ </script>
+{% endblock body %}
